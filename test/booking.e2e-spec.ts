@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from '../app.module';
-import { PrismaService } from '../prisma/prisma.service';
+import request from 'supertest';
+import { AppModule } from '../src/app.module';
+import { PrismaService } from '../src/prisma/prisma.service';
 
 describe('BookingController (e2e)', () => {
   let app: INestApplication;
@@ -35,7 +35,7 @@ describe('BookingController (e2e)', () => {
     it('should create an event', async () => {
       const res = await request(app.getHttpServer())
         .post('/api/events')
-        .send({ name: 'Test Event', total_seats: 10 })
+        .send({ name: 'Test Event', totalSeats: 10 })
         .expect(201);
 
       expect(res.body).toHaveProperty('id');
@@ -64,7 +64,7 @@ describe('BookingController (e2e)', () => {
     let eventId: number;
 
     beforeAll(async () => {
-      const event = await prisma.event.create({ data: { name: 'Concurrent Event', total_seats: 1 } });
+      const event = await prisma.event.create({ data: { name: 'Concurrent Event', totalSeats: 1 } });
       eventId = event.id;
     });
 
