@@ -29,4 +29,5 @@ export class BookingController {
       throw new InternalServerErrorException('Failed to process booking');
     }
   }
+
 }

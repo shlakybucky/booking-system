@@ -12,3 +12,15 @@ export class CreateEventDto {
   @Min(1)
   totalSeats!: number;
 }
+
+export class TopTenEventsDto{
+
+  @IsString()
+  @IsNotEmpty()
+  name!: string;
+
+  @IsInt()
+  userId!: number[];
+
+  totalCount!: number
+}
