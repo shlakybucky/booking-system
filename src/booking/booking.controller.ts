@@ -1,4 +1,4 @@
-import { Controller, Post, Body, ConflictException, InternalServerErrorException } from '@nestjs/common';
+import { Controller, Post, Get, Body, ConflictException, InternalServerErrorException } from '@nestjs/common';
 import { BookingService } from './booking.service';
 import { ReservationResult } from './booking.types';
 import { BookingDto } from './dto/booking.dto';
@@ -9,6 +9,16 @@ import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 @Controller('api/booking')
 export class BookingController {
   constructor(private readonly bookingService: BookingService) {}
+
+  @Get('all')
+  async getAllBookings() {
+  return this.bookingService.findMany();
+}
+
+  @Get('all_with_users')
+  async getManyWithUsers() {
+  return this.bookingService.findManyWithUsers();
+}
 
   @Post('reserve')
   @ApiBody({ type: BookingDto })

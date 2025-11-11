@@ -64,14 +64,16 @@ export class EventsService {
           startDate.setDate(timeNow.getDate() - 1);
           break;
         case '1month':
-          startDate.setDate(timeNow.getMonth() - 1);
+          startDate.setMonth(timeNow.getMonth() - 1);
           break;
         case '1year':
-          startDate.setDate(timeNow.getFullYear() - 1);
+          startDate.setFullYear(timeNow.getFullYear() - 1);
         break;
         default: 
           throw new Error("No such period");
       }
+
+       console.log('Date range:', { startDate, timeNow });
 
       const topBookings= await this.prisma.booking.groupBy({
         by: ['eventId'],
@@ -91,6 +93,8 @@ export class EventsService {
         },
         take: 10,
       });
+
+      console.log('Found bookings:', topBookings.length);
 
       if(topBookings.length === 0) return [];
 

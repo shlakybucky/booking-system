@@ -1,0 +1,16 @@
+scrape_configs:
+  - job_name: 'nestjs-app'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:3000']   # Порт твоего NestJS
+    metrics_path: '/metrics'
+
+
+
+# global:
+#   scrape_interval: 5s
+
+# scrape_configs:
+#   - job_name: 'nestjs-app'
+#     static_configs:
+#       - targets: ['app:3000']
